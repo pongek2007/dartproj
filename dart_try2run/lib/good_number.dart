@@ -1,3 +1,5 @@
+import 'dart:io';
+
 void main() {
   final vgood = [4,5,6,9,14,15,19,23,24,32,36,40,41,42,44,45,46,50,51,54]; // เกณฑ์ดีมาก ๆ คุณอยู่ในเกณฑ์ดีมาก ๆ
   final good = [69, 79]; // เกณฑ์ดี คุณมีโอกาสประสบผลสำเร็จสูง อุปสรรคน้อย เจริญรุ่งเรือง ร่ำรวย รวดเร็ว และมีความสุข
@@ -5,14 +7,31 @@ void main() {
   final fair = [62, 66, 68, 74, 75]; // เกณฑ์พอใช้ คุณจะเหนื่อย มีอุปสรรค แต่ยังมีโอกาสประสบผลสำเร็จ หากมีความพยายาม
   final bad = [3, 7, 11, 12, 17, 20, 21, 27, 29, 30, 33, 34, 37, 43, 48]; // ไม่ดีเลย คุณจะเหนื่อยมาก อุปสรรคมีมาก เจอปัญหารุมเร้า การงาน การเงิน ความรัก เกิดอุบัติเหตุชีวิตไม่จบไม่สิ้น
 
-  final input_number = '0818302585';
-  // var str = '';
+  
+  stdout.write('กรุณาป้อนข้อความ: '); // แสดงข้อความโดยไม่ขึ้นบรรทัดใหม่
+  
+  String? phoneNumber = stdin.readLineSync();
+  var inputNumber = phoneNumber ?? '';
+
   var num = 0;
   var sumnum = 0;
-  for (var i = 0; i < input_number.length; i++) {
-    num = int.parse(input_number.substring(i,i+1));
+  for (var i = 0; i < inputNumber.length; i++) {
+    num = int.parse(inputNumber.substring(i,i+1));
     sumnum = sumnum + num;
   }
-  print(sumnum);
-  print(vgood.contains(sumnum));
+  print('ผลรวมของตัวเลข: $sumnum');
+
+  if (vgood.contains(sumnum)) {
+    print('เกณฑ์ดีมาก ๆ คุณอยู่ในเกณฑ์ดีมาก ๆ');
+  } else if (good.contains(sumnum)) {
+    print('เกณฑ์ดี คุณมีโอกาสประสบผลสำเร็จสูง อุปสรรคน้อย เจริญรุ่งเรือง ร่ำรวย รวดเร็ว และมีความสุข');
+  } else if (vfair.contains(sumnum)) {
+    print('เกณฑ์ดีปานกลาง คุณอยู่ในระดับดีปานกลาง');
+  } else if (fair.contains(sumnum)) {
+    print('เกณฑ์พอใช้ คุณจะเหนื่อย มีอุปสรรค แต่ยังมีโอกาสประสบผลสำเร็จ หากมีความพยายาม');
+  } else if (bad.contains(sumnum)) {
+    print('ไม่ดีเลย คุณจะเหนื่อยมาก อุปสรรคมีมาก เจอปัญหารุมเร้า การงาน การเงิน ความรัก เกิดอุบัติเหตุชีวิตไม่จบไม่สิ้น');
+  } else {
+    print('ไม่พบเกณฑ์ที่ตรงกับผลรวมของตัวเลข');
+  }
 }

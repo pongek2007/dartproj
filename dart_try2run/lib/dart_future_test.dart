@@ -3,13 +3,13 @@ import 'dart:math';
 void main(){
   
   print('start ...');
-  random_number();
+  randNumber();
   print('finish');
 
 }
 
 int value= 0;
-Future<void> random_number() async{
+Future<void> randNumber() async{
   
   
   value = 0;
